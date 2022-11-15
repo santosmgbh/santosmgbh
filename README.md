@@ -8,4 +8,3 @@
 santosmgbh/santosmgbh is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 --->
-<meta name="p:domain_verify" content="b0a5cad753b97de40d7a76f97c4c3616"/>
