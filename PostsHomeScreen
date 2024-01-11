@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PopularArticlesHomeScreen: React.FC = () => {
+const PostsHomeScreen: React.FC = () => {
   const articles = [];
 
   const [readArticles, setReadArticles] = useState<Array<string>>([]);
