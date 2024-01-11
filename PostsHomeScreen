@@ -30,7 +30,7 @@ const PostsHomeScreen: React.FC = () => {
   const renderPopularArticlesRow = useCallback(
     ({ item }) => {
       return (
-        <PopularArticlesRow
+        <PostRow
           articleId={item.id}
           articleTitle={item.title}
           authors={item.authors}
