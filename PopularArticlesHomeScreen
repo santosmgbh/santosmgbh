@@ -1,0 +1,66 @@
+import React, { useCallback, useState } from 'react';
+import { ScrollView, StyleSheet, View } from 'react-native';
+import { showWebView } from '@app/Navigation';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    margin: Metrics.SPACING_MEDIUM,
+  },
+  title: {
+    ...Fonts.style.title,
+    color: Color.Red600,
+  },
+});
+
+const PopularArticlesHomeScreen: React.FC = () => {
+  const articles = [];
+
+  const [readArticles, setReadArticles] = useState<Array<string>>([]);
+  const handleArticlePress = useCallback(
+    (articleId, articleLink) => {
+      showWebView(containerId, articleLink, {
+        disableEnvironmentRedirect: true,
+      });
+      setReadArticles(prev => [...prev, articleId]);
+    },
+    [containerId]
+  );
+
+  const renderPopularArticlesRow = useCallback(
+    ({ item }) => {
+      return (
+        <PopularArticlesRow
+          articleId={item.id}
+          articleTitle={item.title}
+          authors={item.authors}
+          thumbnailImage={item.featuredMedia.sourceUrl}
+          articleLink={item.link}
+          readed={readArticles.includes(item.id)}
+          onPressed={handleArticlePress}
+        />
+      );
+    },
+    [handleArticlePress, readArticles]
+  );
+  return (
+    <ScrollView>
+      <View style={styles.container}>
+        <Choose>
+          <When condition={queryLoading}>
+            <LoadingSpinner />
+          </When>
+          <Otherwise>
+            <FlatList
+              keyExtractor={item => item.id}
+              data={articles}
+              renderItem={renderPopularArticlesRow}
+            />
+          </Otherwise>
+        </Choose>
+      </View>
+    </ScrollView>
+  );
+};
+
+export default PopularArticlesHomeScreen;
